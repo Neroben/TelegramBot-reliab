@@ -18,6 +18,6 @@ public class Application {
 
     @Bean
     public TelegramBot telegramBot() {
-        return new TelegramBot("5145260344:AAHG4rfSwUgefwj8uEnLs0a4Qju6jFJYa9s");
+        return new TelegramBot("5322821400:AAFD6Ge2Sd2KokSs027Pp_5sz5vizruABaE");
     }
 }
