@@ -1,6 +1,8 @@
 package application.bot;
 
+import application.bot.utils.KeyboardGenerator;
 import application.bot.utils.SenderMessage;
+import application.bot.utils.data.Data;
 import application.filter.utils.ProceedMessage;
 import com.pengrad.telegrambot.TelegramBot;
 import com.pengrad.telegrambot.UpdatesListener;
@@ -10,7 +12,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
 import java.util.List;
 
 @Service
@@ -21,6 +22,8 @@ public class Telegram implements SenderMessage {
 
     private final ProceedMessage proceedMessage;
 
+    private final KeyboardGenerator keyboardGenerator = new KeyboardGenerator();
+
     public Telegram(TelegramBot telegramBot, @Qualifier("AuthFilter") ProceedMessage proceedMessage) {
         this.telegramBot = telegramBot;
         this.proceedMessage = proceedMessage;
@@ -29,19 +32,21 @@ public class Telegram implements SenderMessage {
 
     private int proceedUpdates(List<Update> updates) {
         updates.forEach(update -> {
-            String message = proceedMessage.proceed(update, new HashMap<>(INITIAL_CAPACITY));
-            sendMessage(update.message().chat().id(), message);
+            Data data = new Data();
+            proceedMessage.proceed(update, data);
+            sendMessage(update.message().chat().id(), data);
         });
         return UpdatesListener.CONFIRMED_UPDATES_ALL;
     }
 
     @Override
-    public boolean sendMessage(Long chatId, String message) {
+    public boolean sendMessage(Long chatId, Data data) {
         try {
-            telegramBot.execute(new SendMessage(chatId, message));
+            telegramBot.execute(new SendMessage(chatId, data.getMessage())
+                    .replyMarkup(keyboardGenerator.generateWithSettings(data)));
             return true;
         } catch (Exception ex) {
-            log.error("Send message exception: {}, chatId={}, message={}", ex.getMessage(), chatId, message);
+            log.error("Send message exception: {}, chatId={}, message={}", ex.getMessage(), chatId, data.getMessage());
             return false;
         }
     }

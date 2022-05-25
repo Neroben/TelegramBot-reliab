@@ -6,7 +6,7 @@ import java.util.Optional;
 
 public interface UserService {
 
-    void registrationUser(Long charId);
+    User registrationUser(Long charId);
 
     Optional<User> getUser(Long chatId);
 

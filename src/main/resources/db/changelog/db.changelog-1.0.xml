@@ -1,0 +1,39 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+    
+    <changeSet id="24052022-1" author="dontsov">
+        <createTable tableName="user_store">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="settings_mod" type="boolean" defaultValue="false">
+                <constraints nullable="false"/>
+            </column>
+            <column name="do_task_type" type="varchar(255)"/>
+        </createTable>
+
+        <createTable tableName="question_type">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="name" type="varchar(255)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+        </createTable>
+
+        <createTable tableName="user2question_type">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="user_id" type="bigint">
+                <constraints references="user_store(id)" foreignKeyName="fk_question_type_user" nullable="false"/>
+            </column>
+            <column name="question_type_id" type="bigint">
+                <constraints references="question_type(id)" foreignKeyName="fk_user_question_type" nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+</databaseChangeLog>

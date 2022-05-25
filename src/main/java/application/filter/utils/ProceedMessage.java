@@ -1,11 +1,10 @@
 package application.filter.utils;
 
+import application.bot.utils.data.Data;
 import com.pengrad.telegrambot.model.Update;
-
-import java.util.Map;
 
 public interface ProceedMessage {
 
-    String proceed(Update update, Map<String, Object> data);
+    Data proceed(Update update, Data data);
 
 }

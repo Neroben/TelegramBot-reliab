@@ -17,8 +17,8 @@ public class UserServiceInDb implements UserService {
     }
 
     @Override
-    public void registrationUser(Long charId) {
-        userRepository.save(User.of(charId));
+    public User registrationUser(Long charId) {
+        return userRepository.save(User.of(charId));
     }
 
     @Override
