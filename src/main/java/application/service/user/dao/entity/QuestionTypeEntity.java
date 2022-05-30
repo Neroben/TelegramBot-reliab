@@ -1,4 +1,4 @@
-package application.user.dao.entity;
+package application.service.user.dao.entity;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

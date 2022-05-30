@@ -16,4 +16,31 @@
             <column name="name">LISTENING</column>
         </insert>
     </changeSet>
+    <changeSet id="29052022-1" author="dontsov">
+        <insert tableName="word_task">
+            <column name="word">Silly</column>
+            <column name="answers">Мир;Смешной;Веселый</column>
+            <column name="right_answer">Забавный</column>
+        </insert>
+        <insert tableName="word_task">
+            <column name="word">Happy</column>
+            <column name="answers">Глупый;Смешной;Забавный</column>
+            <column name="right_answer">Веселый</column>
+        </insert>
+        <insert tableName="word_task">
+            <column name="word">Peace</column>
+            <column name="answers">Смешной;Забавный;Веселый</column>
+            <column name="right_answer">Мир</column>
+        </insert>
+        <insert tableName="word_task">
+            <column name="word">Green</column>
+            <column name="answers">Мир;Забавный;Веселый</column>
+            <column name="right_answer">Зеленый</column>
+        </insert>
+        <insert tableName="word_task">
+            <column name="word">Tree</column>
+            <column name="answers">Мир;Забавный;Веселый</column>
+            <column name="right_answer">Дерево</column>
+        </insert>
+    </changeSet>
 </databaseChangeLog>

@@ -1,7 +1,7 @@
-package application.user.dao;
+package application.service.user.dao;
 
-import application.user.dao.entity.QuestionEnum;
-import application.user.dao.entity.QuestionTypeEntity;
+import application.service.user.dao.entity.QuestionEnum;
+import application.service.user.dao.entity.QuestionTypeEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

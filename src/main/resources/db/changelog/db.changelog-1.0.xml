@@ -8,10 +8,11 @@
             <column name="id" type="bigint" autoIncrement="true">
                 <constraints nullable="false" primaryKey="true"/>
             </column>
-            <column name="settings_mod" type="boolean" defaultValue="false">
+            <column name="state" type="varchar(255)" defaultValue="NONE">
                 <constraints nullable="false"/>
             </column>
             <column name="do_task_type" type="varchar(255)"/>
+            <column name="do_task_id" type="bigint"/>
         </createTable>
 
         <createTable tableName="question_type">
@@ -32,6 +33,33 @@
             </column>
             <column name="question_type_id" type="bigint">
                 <constraints references="question_type(id)" foreignKeyName="fk_user_question_type" nullable="false"/>
+            </column>
+        </createTable>
+        
+        <createTable tableName="word_task">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="word" type="varchar(512)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="answers" type="varchar(2048)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="right_answer" type="varchar(512)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        
+        <createTable tableName="learned_words">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="user_id" type="bigint">
+                <constraints references="user_store(id)" foreignKeyName="fk_user_learned_words" nullable="false"/>
+            </column>
+            <column name="word_id" type="bigint">
+                <constraints references="word_task(id)" foreignKeyName="fk_word_learned_words" nullable="false"/>
             </column>
         </createTable>
     </changeSet>

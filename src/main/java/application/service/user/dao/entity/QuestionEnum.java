@@ -1,10 +1,9 @@
-package application.user.dao.entity;
+package application.service.user.dao.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 import java.util.Map;
-import java.util.Set;
 
 @Getter
 @AllArgsConstructor

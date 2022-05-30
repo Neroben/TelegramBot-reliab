@@ -1,6 +1,6 @@
-package application.user.dao;
+package application.service.user.dao;
 
-import application.user.dao.entity.User;
+import application.service.user.dao.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

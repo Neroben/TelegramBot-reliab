@@ -1,4 +1,4 @@
-package application.user.dao.entity;
+package application.service.user.dao.entity;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -21,14 +21,18 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "question_type_id"))
     private List<QuestionTypeEntity> questionTypeList;
 
-    private Boolean settingsMod = false;
+    @Enumerated(EnumType.STRING)
+    private UserState state;
 
     @Enumerated(EnumType.STRING)
     private QuestionEnum doTaskType;
 
+    private Long doTaskId;
+
     public static User of(Long charId) {
         User user = new User();
         user.setId(charId);
+        user.setState(UserState.NONE);
         return user;
     }
 

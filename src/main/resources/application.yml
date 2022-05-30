@@ -23,4 +23,6 @@ spring:
 
 telegram:
   token: 5322821400:AAFD6Ge2Sd2KokSs027Pp_5sz5vizruABaE
-
+  message:
+    select-task: "#Выбрать тип задачи"
+    settings-answer: Отлично!

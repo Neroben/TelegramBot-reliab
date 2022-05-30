@@ -1,7 +1,9 @@
-package application.user.service;
+package application.service.user.service;
 
-import application.user.dao.UserRepository;
-import application.user.dao.entity.User;
+import application.service.task.Task;
+import application.service.user.dao.UserRepository;
+import application.service.user.dao.entity.User;
+import application.service.user.dao.entity.UserState;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -28,6 +30,19 @@ public class UserServiceInDb implements UserService {
 
     @Override
     public User updateUser(User user) {
+        return userRepository.save(user);
+    }
+
+    @Override
+    public User setState(User user, UserState state) {
+        user.setState(state);
+        return userRepository.save(user);
+    }
+
+    @Override
+    public User setTask(User user, Task task) {
+        user.setDoTaskId(task.getId());
+        user.setDoTaskType(task.getType());
         return userRepository.save(user);
     }
 }
